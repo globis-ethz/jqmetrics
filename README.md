@@ -22,8 +22,10 @@ jQMetrics needs to be included using the following statements:
 <link href="../css/jqmetrics.css" type="text/css" rel="stylesheet" />
 ```
 
-It will then load the jQMetrics interface and allow elements to be selected and included in the measurements.
+As illustrated below, it will then load the jQMetrics interface and allow elements to be selected and included in the measurements.
 All elements of class `markAsContent` will be included.
+
+![jqmetrics](jqmetrics.png)
 
 ## Examples
 
