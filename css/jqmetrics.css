@@ -1,0 +1,55 @@
+#jQMetrics {
+	background: #ccc;
+	color: #666;
+	font-family: Arial;
+	font-size: 16pt;
+	line-height: 18pt;
+	padding: .5em;
+	position: fixed;
+	text-align: left;
+	right: 0;
+	bottom: 0;
+	max-width: 300px;
+	z-index: 9999;
+}
+
+#jQMetrics * {
+	color: #666;
+	font-family: Arial;
+	font-size: 16pt;
+	line-height: 18pt;
+	text-align: left;
+}
+
+#jQMetrics a {
+	color: blue;
+	text-align: left;
+}
+
+#docWndRatio {
+	color: #000;
+}
+
+.markAsContent,.markAsContent h1,.markAsContent h2,.markAsContent h3,.markAsContent h4,.markAsContent h5,.markAsContent h6,.markAsContent p,.markAsContent img,.markAsContent object,.markAsContent video,.markAsContent a {
+	outline: 1px dashed black;
+}
+
+.green {
+	background: #99FF00;
+}
+
+.yellow {
+	background: #FFFF00;
+}
+
+.red {
+	background: #FF0000;
+}
+
+.yellowText {
+	color: #FFCC00;
+}
+
+.redText {
+	color: #CC3300;
+}

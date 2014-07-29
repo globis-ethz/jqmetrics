@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin: 1cm">
+
+    <div id="square" style="width: 10.0cm; height: 10.0cm; background: red">10cm x 10cm</div>
+
+    <div id="unit" style="width: 1.0in; height: 1.0in; background: blue">1in x 1in</div>
+
+    <script language="javascript">
+        var dpi = unit.offsetWidth;
+        document.write('DPI calculated using the 1.0in unit: ' + dpi + '<br/>');
+        w = screen.width / dpi * 2.54;
+        h = screen.height / dpi * 2.54;
+        document.write(Math.round(w * 100) / 100 + 'cm x ' + Math.round(h * 100) / 100 + 'cm<br/>');
+
+        var inD = prompt('Enter screen diagonal in inches (e.g. 30" = 30):', 30);
+        var mmD = inD * 2.54;
+        var formatW = screen.width;
+        var formatH = screen.height;
+        var mmW = Math.sqrt((Math.pow(mmD, 2) * Math.pow(formatW, 2)) / (Math.pow(formatW, 2) + Math.pow(formatH, 2)));
+        var mmH = Math.sqrt(Math.pow(mmD, 2) - Math.pow(mmW, 2));
+        var inW = mmW / 2.54;
+        var ppi = Math.round(formatW / inW);
+        document.write('DPI calculated using the screen diagonal you entered: ' + Math.round(ppi * 100) / 100 + '<br/>');
+        document.write(Math.round(mmW * 100) / 100 + 'cm x ' + Math.round(mmH * 100) / 100 + 'cm<br/>');
+        var s = square.offsetWidth * 2.54 / ppi;
+        document.write('Which means that the red square is more like: ' + Math.round(s * 100) / 100 + 'cm x ' + Math.round(s * 100) / 100 + 'cm<br/>');
+    </script>
+    </div>
+
+</body>
+
+</html>
