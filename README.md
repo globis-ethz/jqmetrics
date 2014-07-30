@@ -3,7 +3,7 @@ jQMetrics
 
 jQMetrics is a prototype implementation of an evaluation tool for web developers and designers to perform measurements along the metrics defined in our [CHI 2011 Paper](http://dl.acm.org/citation.cfm?id=1979164). Measurements are based on JavaScript using jQuery for determining the DPI value of your screen and the appropriate font size.
 
-jQMetrics was originally created by [Michael Nebeling](http://www.michael-nebeling.de) in the [Global Information Systems Group](http://www.globis.ethz.ch) at ETH Zurich. It is available as free open-source software distributed under the GPLv3 license. See the file LICENSE for more information.
+jQMetrics was originally created in the [Global Information Systems Group](http://www.globis.ethz.ch) at ETH Zurich. It is written and maintained by [Michael Nebeling](http://www.michael-nebeling.de). It is available as free open-source software distributed under the GPLv3 license. See the file [LICENSE](LICENSE) for more information.
 
 Should you have any questions or comments, please feel free to [send an email to Michael Nebeling](mailto:michael.nebeling@gmail.com).
 
