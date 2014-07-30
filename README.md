@@ -18,8 +18,8 @@ jQMetrics needs to be included using the following statements:
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <!-- include jQMetrics -->
-<script src="../js/jquery.metrics.js" type="text/javascript"></script>
-<link href="../css/jqmetrics.css" type="text/css" rel="stylesheet" />
+<script src="js/jquery.metrics.js" type="text/javascript"></script>
+<link href="css/jqmetrics.css" type="text/css" rel="stylesheet" />
 ```
 
 As illustrated below, it will then load the jQMetrics interface and allow elements to be selected and included in the measurements.
