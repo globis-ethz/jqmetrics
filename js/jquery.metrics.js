@@ -143,6 +143,8 @@
                 height: 1680
             }
   ],
+  
+		utils: metricsUtils, // load utils into $.metrics
 
         metrics: { /* contains all metrics for which we want to perform the measurements */
             documentWindowRatio: {
@@ -370,22 +372,22 @@
         },
 
         install: function () {
-            var e = document.createElement('div');
-            $(e).attr('id', 'jQMetrics');
-            $(e).html('Measurements<hr/><div id="measurements"></div><br/><a href="javascript:$.metrics.capture()">Capture</a><br/><br/><div id="setting"></div><div id="settings"></div><br/><div id="metrics"></div>');
+            var e = $('<div></div>')
+				.attr('id', 'jQMetrics')
+				.html('Measurements<hr/><div id="measurements"></div><br/><a href="javascript:$.metrics.capture()">Capture</a><br/><br/><div id="setting"></div><div id="settings"></div><br/><div id="metrics"></div>');
             $('body').append(e);
 
             var settings = [];
             $.each($.metrics.settings, function (index, setting) {
-                settings.push('<a href="javascript:metricsUtils.resize(' + setting.width + ', ' + setting.height + ')">' + setting.width + 'x' + setting.height + '</a>');
+                settings.push('<a href="#" onclick="$.metrics.utils.resize(' + setting.width + ', ' + setting.height + ')">' + setting.width + 'x' + setting.height + '</a>');
             });
             $('#settings').html(settings.join(' '));
-
+			
             var metrics = [];
             $.each($.metrics.metrics, function (index, metric) {
                 metrics.push(metric.name + ': <span id="' + metric.id + '"></span>');
             });
-            $('#jQMetrics').html(metrics.join('<br/>'));
+            $('#metrics').html(metrics.join('<br/>'));
         },
         init: function () {
             content = $('.markAsContent');
@@ -441,7 +443,6 @@
         _txtArea: 0
     }
 
-
     // calibration ////////////////////////////////////////////////////////////////
 
     var pixelsPerInch = 96;
@@ -460,36 +461,37 @@
         $(window).bind('scroll', $.metrics.update);
         $(window).bind('resize', $.metrics.update);
 
-        $('*', 'body').on('dblclick', function (event) {
-            var element = event.target;
-            if ($(element).attr('id') == 'jQMetrics' || $(element).parents('#jQMetrics').length > 0) {
-                return false;
-            }
-            if (event.type == 'dblclick') {
-                if ($(element).hasClass('markAsContent')) {
-                    $(element).removeClass('markAsContent');
-                } else {
-                    $(element).addClass('markAsContent');
-                }
-                $.metrics.init();
-                $.metrics.update();
-            }
-        })
+        $('*', 'body')
+			.on('dblclick', function (event) {
+				var element = event.target;
+				if ($(element).attr('id') == 'jQMetrics' || $(element).parents('#jQMetrics').length > 0) {
+					return false;
+				}
+				if (event.type == 'dblclick') {
+					if ($(element).hasClass('markAsContent')) {
+						$(element).removeClass('markAsContent');
+					} else {
+						$(element).addClass('markAsContent');
+					}
+					$.metrics.init();
+					$.metrics.update();
+				}
+			})
             .hover(function () {
-                    var name = $(this).attr('id') ? $(this).attr('id') : ($(this).attr('name') ? $(this).attr('name') : $(this).prop("tagName").toLowerCase()),
-                        msg = 'Double click to mark ' + name + ' as content...';
-                    if ($(this).hasClass('markAsContent')) {
-                        msg = 'Double click to undo';
-                    }
-                    if (!$(this).data('oldBackground')) {
-                        $(this).data('oldBackground', $(this).css('background'));
-                    }
-                    $(this).css('background', 'highlight');
-                    $(this).attr('title', [msg].join(' '));
-                },
-                function () {
-                    $(this).css('background', $(this).data('oldBackground'));
-                });
+				var name = $(this).attr('id') ? $(this).attr('id') : ($(this).attr('name') ? $(this).attr('name') : $(this).prop("tagName").toLowerCase()),
+					msg = 'Double click to mark ' + name + ' as content...';
+				if ($(this).hasClass('markAsContent')) {
+					msg = 'Double click to undo';
+				}
+				if (!$(this).data('oldBackground')) {
+					$(this).data('oldBackground', $(this).css('background'));
+				}
+				$(this).css('background', 'highlight');
+				$(this).attr('title', [msg].join(' '));
+			},
+			function () {
+				$(this).css('background', $(this).data('oldBackground'));
+			});
 
         $.metrics.init();
         $.metrics.install();
